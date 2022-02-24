@@ -1,0 +1,250 @@
+{
+  "version": 2,
+  "projects": {
+    "portal": {
+      "projectType": "application",
+      "root": "apps/portal",
+      "sourceRoot": "apps/portal/src",
+      "prefix": "ub",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/angular:webpack-browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/portal",
+            "index": "apps/portal/src/index.html",
+            "main": "apps/portal/src/main.ts",
+            "polyfills": "apps/portal/src/polyfills.ts",
+            "tsConfig": "apps/portal/tsconfig.app.json",
+            "assets": ["apps/portal/src/favicon.ico", "apps/portal/src/assets"],
+            "styles": ["apps/portal/src/styles.css"],
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "apps/portal/webpack.config.js"
+            }
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/portal/src/environments/environment.ts",
+                  "with": "apps/portal/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "customWebpackConfig": {
+                "path": "apps/portal/webpack.prod.config.js"
+              }
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "executor": "@nrwl/angular:webpack-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "portal:build:production"
+            },
+            "development": {
+              "browserTarget": "portal:build:development"
+            }
+          },
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 4201
+          }
+        },
+        "extract-i18n": {
+          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "portal:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/portal/src/**/*.ts",
+              "apps/portal/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/portal"],
+          "options": {
+            "jestConfig": "apps/portal/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-data-access-user": {
+      "projectType": "library",
+      "root": "libs/shared/data-access-user",
+      "sourceRoot": "libs/shared/data-access-user/src",
+      "prefix": "ub",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/data-access-user"],
+          "options": {
+            "jestConfig": "libs/shared/data-access-user/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/data-access-user/src/**/*.ts",
+              "libs/shared/data-access-user/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "shell": {
+      "projectType": "application",
+      "root": "apps/shell",
+      "sourceRoot": "apps/shell/src",
+      "prefix": "ub",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/angular:webpack-browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/shell",
+            "index": "apps/shell/src/index.html",
+            "main": "apps/shell/src/main.ts",
+            "polyfills": "apps/shell/src/polyfills.ts",
+            "tsConfig": "apps/shell/tsconfig.app.json",
+            "assets": ["apps/shell/src/favicon.ico", "apps/shell/src/assets"],
+            "styles": ["apps/shell/src/styles.css"],
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "apps/shell/webpack.config.js"
+            }
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/shell/src/environments/environment.ts",
+                  "with": "apps/shell/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "customWebpackConfig": {
+                "path": "apps/shell/webpack.prod.config.js"
+              }
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "executor": "@nrwl/angular:webpack-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "shell:build:production"
+            },
+            "development": {
+              "browserTarget": "shell:build:development"
+            }
+          },
+          "defaultConfiguration": "development",
+          "options": {}
+        },
+        "extract-i18n": {
+          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "shell:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/shell/src/**/*.ts",
+              "apps/shell/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/shell"],
+          "options": {
+            "jestConfig": "apps/shell/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "serve-mfe": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": ["nx serve portal", "nx serve shell"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "generators": {
+    "@nrwl/angular:application": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "none"
+    },
+    "@nrwl/angular:library": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "css"
+    }
+  },
+  "defaultProject": "shell"
+}
